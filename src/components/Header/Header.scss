@@ -18,3 +18,52 @@
   width: 38px;
   height: 38px;
 }
+.search-bar {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  form {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    input {
+      width: 100%;
+      padding: 0 10px;
+      font-weight: 600;
+    }
+    button {
+      font-size: 20px;
+      padding: 0px 8px;
+      cursor: pointer;
+      height: 38px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    height: auto !important;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 40px;
+  }
+  .search-bar {
+    justify-content: none;
+    flex: 1;
+  }
+  form {
+    width: auto !important;
+  }
+  .logo {
+    width: 100%;
+    text-align: center;
+    a {
+      font-size: 25px;
+    }
+  }
+}
+@media (max-width: 320px) {
+  input {
+    font-size: 10px;
+  }
+}

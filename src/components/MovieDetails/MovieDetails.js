@@ -7,7 +7,7 @@ import {
   removeSelectedMovieOrShow,
 } from "../../features/movies/movieSlice";
 import "./MovieDetails.scss";
-// ---------------------------------------------------------------------------------------------------
+// ============================================================================
 
 const MovieDetails = () => {
   const { imdbId } = useParams();

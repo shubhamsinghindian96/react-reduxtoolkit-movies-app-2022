@@ -6,6 +6,12 @@ import {
 import "./MovieListing.scss";
 import { useSelector } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
+// import { settings } from "../../common/carouselSettings";
+
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// =========================================================================
 
 const MovieListing = () => {
   // Fetching Movies List from the redux-store.
@@ -17,7 +23,7 @@ const MovieListing = () => {
   console.log("shows", shows);
 
   let renderMovies,
-    renderShows = "";
+    renderShows = null;
 
   renderMovies =
     movies?.Response === "True" ? (
@@ -54,12 +60,18 @@ const MovieListing = () => {
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>Movies</h2>
-        <div className="movie-container">{renderMovies}</div>
+        <div className="movie-container">
+          {renderMovies}
+          {/* <Slider {...settings}>{renderMovies}</Slider> */}
+        </div>
       </div>
 
       <div className="show-list">
         <h2>Shows</h2>
-        <div className="movie-container">{renderShows}</div>
+        <div className="movie-container">
+          {renderShows}
+          {/* <Slider {...settings}>{renderShows}</Slider> */}
+        </div>
       </div>
     </div>
   );

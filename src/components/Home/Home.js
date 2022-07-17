@@ -16,6 +16,10 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  // Initial Search Values
+  const movieText = "Harry";
+  const showText = "Friends";
+
   // ============================================ SYNCHRONOUSLY ======================================================
   // Fetching Movies List
   // useEffect(() => {
@@ -47,12 +51,12 @@ const Home = () => {
   useEffect(() => {
     // This method (fetchAsyncMovies()) is used to fetch movies list from the imdb database by asynchronously
     // and store that movies in redux store.
-    dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncMovies(movieText));
 
     // This method (fetchAsyncShows()) is used to fetch shows list from the imdb database by asynchronously
     // and store that shows in redux store.
-    dispatch(fetchAsyncShows());
-  }, [dispatch]);
+    dispatch(fetchAsyncShows(showText));
+  }, [dispatch, movieText, showText]);
 
   // ===============================================================================================================
 

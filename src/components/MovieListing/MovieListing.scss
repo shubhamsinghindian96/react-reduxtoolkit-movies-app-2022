@@ -1,5 +1,9 @@
 @import "../../common/colors.scss";
 
+.movie-wrapper {
+  // height: 100vh;
+}
+
 .movie-list,
 .show-list {
   margin: 20px 0;
@@ -16,7 +20,6 @@
   grid-gap: 15px;
 }
 
-.movies-error {
-}
-.movie-wrapper {
+.movies-error h3 {
+  color: $font-primary;
 }

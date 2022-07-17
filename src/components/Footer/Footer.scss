@@ -2,10 +2,16 @@
 
 .footer {
   background: $secondary-color;
-  height: 72px;
+  height: auto;
   color: $font-primary;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
 
-  div {
+@media (max-width: 991px) {
+  .footer {
+    display: block;
     text-align: center;
   }
 }

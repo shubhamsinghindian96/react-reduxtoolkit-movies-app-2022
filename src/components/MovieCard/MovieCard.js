@@ -1,6 +1,7 @@
 import React from "react";
 import "./MovieCard.scss";
 import { Link } from "react-router-dom";
+// ============================================================================
 
 const MovieCard = ({ data }) => {
   console.log("data", data);

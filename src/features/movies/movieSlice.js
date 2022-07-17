@@ -7,11 +7,11 @@ import { apiKey } from "../../common/apis/movieApiKey";
 // This is an asynchronous action creator.
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async () => {
-    const movieText = "Harry"; //movieText is used to search a particular movie.
+  async (searchedvalue) => {
+    // const movieText = "Harry"; //movieText is used to search a particular movie.
     try {
       const response = await movieApi.get(
-        `?apiKey=${apiKey}&s=${movieText}&type=movie`
+        `?apiKey=${apiKey}&s=${searchedvalue}&type=movie`
       );
       console.log("Movies List Response:: ", response);
       return response.data;
@@ -25,11 +25,11 @@ export const fetchAsyncMovies = createAsyncThunk(
 // This is an asynchronous action creator.
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
-  async () => {
-    const seriesText = "Friends"; //seriesText is used to search a particular shows series.
+  async (searchedvalue) => {
+    // const seriesText = "Friends"; //seriesText is used to search a particular shows series.
     try {
       const response = await movieApi.get(
-        `?apiKey=${apiKey}&s=${seriesText}&type=series`
+        `?apiKey=${apiKey}&s=${searchedvalue}&type=series`
       );
       console.log("Shows List Response:: ", response);
       return response.data;
