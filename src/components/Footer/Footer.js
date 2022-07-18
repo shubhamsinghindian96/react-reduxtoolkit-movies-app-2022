@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { storeSearchedValue } from "../../features/movies/movieSlice";
 import "./Footer.scss";
 const Footer = () => {

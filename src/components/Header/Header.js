@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
 import user from "../../images/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import "./Header.scss";
