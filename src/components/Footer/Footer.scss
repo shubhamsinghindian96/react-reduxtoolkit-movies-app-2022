@@ -2,11 +2,13 @@
 
 .footer {
   background: $secondary-color;
-  height: auto;
   color: $font-primary;
   padding: 10px 0;
   display: flex;
   justify-content: space-evenly;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 @media (max-width: 991px) {

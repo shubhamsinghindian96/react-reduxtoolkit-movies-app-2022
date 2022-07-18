@@ -63,6 +63,7 @@ const initialState = {
   moviesData: {},
   showsData: {},
   particularMovieOrShowData: {},
+  searchedValue: "",
 };
 
 const movieSlice = createSlice({
@@ -75,6 +76,10 @@ const movieSlice = createSlice({
     },
     removeSelectedMovieOrShow: (state) => {
       state.particularMovieOrShowData = {};
+    },
+
+    storeSearchedValue: (state, { payload }) => {
+      state.searchedValue = payload ? payload : "";
     },
   },
   extraReducers: {
@@ -126,7 +131,12 @@ export const fetchAllShows = (state) => state.movies.showsData;
 //Fetch particular Movie or Show details from the redux-store
 export const fetchParticularMovieOrShow = (state) =>
   state.movies.particularMovieOrShowData;
+
+// Fetch Searched Value from the redux store
+export const fetchSearchedValue = (state) => state.movies.searchedValue;
+
 // ----------------------------------------------------------------------
-export const { addMovies, removeSelectedMovieOrShow } = movieSlice.actions;
+export const { addMovies, removeSelectedMovieOrShow, storeSearchedValue } =
+  movieSlice.actions;
 export default movieSlice.reducer;
 // =================================================================================================

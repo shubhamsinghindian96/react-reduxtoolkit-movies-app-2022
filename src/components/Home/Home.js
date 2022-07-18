@@ -1,10 +1,11 @@
 import "./Home.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieListing from "../MovieListing/MovieListing";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAsyncMovies,
   fetchAsyncShows,
+  fetchSearchedValue,
 } from "../../features/movies/movieSlice";
 // import movieApi from "../../common/apis/movieApi";
 // import { apiKey } from "../../common/apis/movieApiKey";
@@ -16,9 +17,22 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  const searchedValue = useSelector(fetchSearchedValue);
+  console.log("searchedValue", searchedValue);
+
   // Initial Search Values
-  const movieText = "Harry";
-  const showText = "Friends";
+
+  const [movieText, setMovieText] = useState("");
+  const [showText, setShowText] = useState("");
+
+  useEffect(() => {
+    setMovieText(
+      searchedValue?.toString()?.length > 0 ? searchedValue : "Harry"
+    );
+    setShowText(
+      searchedValue?.toString()?.length > 0 ? searchedValue : "Friends"
+    );
+  }, [searchedValue]);
 
   // ============================================ SYNCHRONOUSLY ======================================================
   // Fetching Movies List

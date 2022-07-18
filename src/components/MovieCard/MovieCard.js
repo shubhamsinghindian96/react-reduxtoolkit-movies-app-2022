@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 // ============================================================================
 
 const MovieCard = ({ data }) => {
-  console.log("data", data);
   return (
     <>
       <div className="card-item">

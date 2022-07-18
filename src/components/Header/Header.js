@@ -1,34 +1,53 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import user from "../../images/user.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Header.scss";
 import {
   fetchAsyncMovies,
   fetchAsyncShows,
+  fetchSearchedValue,
+  storeSearchedValue,
 } from "../../features/movies/movieSlice";
+import { useNavigate } from "react-router-dom";
+
 // ============================================================================
 
 const Header = () => {
+  const searchedValue = useSelector(fetchSearchedValue);
   const [searchMovieOrShow, setSearchMovieOrShow] = useState("");
+
+  useEffect(() => {
+    setSearchMovieOrShow(searchedValue ? searchedValue : "");
+  }, [searchedValue]);
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   // This method is used to search a particular movie or show.
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault(); //Prevent Refreshing of a page.
-    if (searchMovieOrShow === "") alert("Please Enter the value");
+    if (searchMovieOrShow === "") return alert("Please Enter the value");
     console.log("searchMovieOrShow", searchMovieOrShow);
-    dispatch(fetchAsyncMovies(searchMovieOrShow));
-    dispatch(fetchAsyncShows(searchMovieOrShow));
+    await dispatch(storeSearchedValue(searchMovieOrShow));
+    await dispatch(fetchAsyncMovies(searchMovieOrShow));
+    await dispatch(fetchAsyncShows(searchMovieOrShow));
+    navigate("/");
+    // setSearchMovieOrShow("");
+  };
+
+  const handleNavigate = () => {
+    dispatch(storeSearchedValue());
     setSearchMovieOrShow("");
+    navigate("/");
   };
 
   return (
     <>
       <div className="header">
-        <div className="logo">
-          <Link to="/">Superb Movies App 2022 </Link>
+        <div className="logo" onClick={handleNavigate}>
+          Superb Movies App 2022
         </div>
         <div className="search-bar">
           <form onSubmit={submitHandler}>

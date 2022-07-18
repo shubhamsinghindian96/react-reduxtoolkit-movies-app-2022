@@ -11,9 +11,14 @@ a {
   text-decoration: none;
   color: $font-primary;
 }
+html {
+  min-height: 100vh;
+}
 
 body {
   background: $primary-color;
+  height: 100%;
+  position: relative;
 }
 .container {
   margin: 0 40px;
