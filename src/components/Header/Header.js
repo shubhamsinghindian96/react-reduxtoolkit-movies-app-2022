@@ -13,29 +13,30 @@ import { useNavigate } from "react-router-dom";
 // ============================================================================
 
 const Header = () => {
-  const searchedValue = useSelector(fetchSearchedValue);
-  const [searchMovieOrShow, setSearchMovieOrShow] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const searchedValue = useSelector(fetchSearchedValue); //Fetching Search field value from redux store.
+  const [searchMovieOrShow, setSearchMovieOrShow] = useState(""); // Used to store search field value
+
+  // Store searched value in local state
   useEffect(() => {
     setSearchMovieOrShow(searchedValue ? searchedValue : "");
   }, [searchedValue]);
 
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
   // This method is used to search a particular movie or show.
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault(); //Prevent Refreshing of a page.
     if (searchMovieOrShow === "") return alert("Please Enter the value");
     console.log("searchMovieOrShow", searchMovieOrShow);
-    await dispatch(storeSearchedValue(searchMovieOrShow));
-    await dispatch(fetchAsyncMovies(searchMovieOrShow));
-    await dispatch(fetchAsyncShows(searchMovieOrShow));
-    navigate("/");
-    // setSearchMovieOrShow("");
+    dispatch(storeSearchedValue(searchMovieOrShow)); // Sending Searched Value to redux store
+    dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
+    dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
+    navigate("/"); // Redirect to Home Page
+    // setSearchMovieOrShow(""); // Clear Search field value
   };
 
+  // This method is used to clear search field value and redirect to home page
   const handleNavigate = () => {
     dispatch(storeSearchedValue());
     setSearchMovieOrShow("");

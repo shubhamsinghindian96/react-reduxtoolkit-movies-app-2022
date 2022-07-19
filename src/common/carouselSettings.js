@@ -1,4 +1,4 @@
-//React Slick Carousel Settings
+// React Slick Carousel Settings
 export const settings = {
   dots: false, //( ... )
   infinite: false,

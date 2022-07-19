@@ -3,10 +3,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { storeSearchedValue } from "../../features/movies/movieSlice";
 import "./Footer.scss";
+// ======================================================================
+
 const Footer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // This method is used to redirect on Home Page
   const handleNavigate = () => {
     dispatch(storeSearchedValue());
     navigate("/");

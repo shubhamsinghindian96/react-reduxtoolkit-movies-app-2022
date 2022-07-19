@@ -17,7 +17,7 @@ function App() {
         <Router>
           <Header />
           <div className="container">
-            {/* Routing Start  */}
+            {/* React Router DOM Version 6 => Routing Start  */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/movies" element={<MovieListing />} />

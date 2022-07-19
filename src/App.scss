@@ -6,11 +6,6 @@
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
-
-a {
-  text-decoration: none;
-  color: $font-primary;
-}
 html {
   min-height: 100vh;
 }
@@ -19,6 +14,10 @@ body {
   background: $primary-color;
   height: 100%;
   position: relative;
+}
+a {
+  text-decoration: none;
+  color: $font-primary;
 }
 .container {
   margin: 0 40px;

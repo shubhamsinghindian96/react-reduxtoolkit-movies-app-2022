@@ -70,14 +70,19 @@ const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    //Used to add new movie in store = This is synchronous action creator
+    // The below used methods are synchronous action creator
+
+    //Used to add new movie in redux store
     addMovies: (state, { payload }) => {
       state.moviesData = payload;
     },
+
+    // Used to remove particular movie or show details from the redux store
     removeSelectedMovieOrShow: (state) => {
       state.particularMovieOrShowData = {};
     },
 
+    // Used to store seached field value in redux store
     storeSearchedValue: (state, { payload }) => {
       state.searchedValue = payload ? payload : "";
     },

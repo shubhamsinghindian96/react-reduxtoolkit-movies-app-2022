@@ -11,12 +11,9 @@ import "./MovieDetails.scss";
 
 const MovieDetails = () => {
   const { imdbId } = useParams();
-  console.log("imdbId", imdbId);
-
   const dispatch = useDispatch();
 
   const completeMovieShowDetails = useSelector(fetchParticularMovieOrShow);
-  console.log("completeMovieShowDetails", completeMovieShowDetails);
 
   //Fetching Particular Movie or Show complete details
   useEffect(() => {

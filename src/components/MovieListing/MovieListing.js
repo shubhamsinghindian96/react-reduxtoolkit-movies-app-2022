@@ -16,11 +16,9 @@ import MovieCard from "../MovieCard/MovieCard";
 const MovieListing = () => {
   // Fetching Movies List from the redux-store.
   const movies = useSelector(fetchAllMovies);
-  console.log("movies", movies);
 
   // Fetching Shows List from the redux-store.
   const shows = useSelector(fetchAllShows);
-  console.log("shows", shows);
 
   let renderMovies,
     renderShows = null;

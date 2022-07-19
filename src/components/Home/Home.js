@@ -17,14 +17,12 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
-  const searchedValue = useSelector(fetchSearchedValue);
-  console.log("searchedValue", searchedValue);
-
-  // Initial Search Values
+  const searchedValue = useSelector(fetchSearchedValue); // Fetching searched value from redux store
 
   const [movieText, setMovieText] = useState("");
   const [showText, setShowText] = useState("");
 
+  // Initial Movie and Show Values
   useEffect(() => {
     setMovieText(
       searchedValue?.toString()?.length > 0 ? searchedValue : "Harry"
@@ -65,11 +63,11 @@ const Home = () => {
   useEffect(() => {
     // This method (fetchAsyncMovies()) is used to fetch movies list from the imdb database by asynchronously
     // and store that movies in redux store.
-    dispatch(fetchAsyncMovies(movieText));
+    movieText && dispatch(fetchAsyncMovies(movieText));
 
     // This method (fetchAsyncShows()) is used to fetch shows list from the imdb database by asynchronously
     // and store that shows in redux store.
-    dispatch(fetchAsyncShows(showText));
+    showText && dispatch(fetchAsyncShows(showText));
   }, [dispatch, movieText, showText]);
 
   // ===============================================================================================================
