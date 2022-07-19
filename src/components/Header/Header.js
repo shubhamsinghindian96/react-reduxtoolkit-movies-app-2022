@@ -28,7 +28,6 @@ const Header = () => {
   const submitHandler = (event) => {
     event.preventDefault(); //Prevent Refreshing of a page.
     if (searchMovieOrShow === "") return alert("Please Enter the value");
-    console.log("searchMovieOrShow", searchMovieOrShow);
     dispatch(storeSearchedValue(searchMovieOrShow)); // Sending Searched Value to redux store
     dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
     dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
@@ -47,7 +46,7 @@ const Header = () => {
     <>
       <div className="header">
         <div className="logo" onClick={handleNavigate}>
-          Superb Movies App 2022
+          Superb Movies and Shows App 2022
         </div>
         <div className="search-bar">
           <form onSubmit={submitHandler}>

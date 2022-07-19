@@ -6,13 +6,10 @@
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
-html {
-  min-height: 100vh;
-}
 
 body {
   background: $primary-color;
-  height: 100%;
+  min-height: 100vh;
   position: relative;
 }
 a {

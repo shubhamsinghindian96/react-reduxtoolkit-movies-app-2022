@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer">
-        <div onClick={handleNavigate}>Superb Movies App</div>
+        <div onClick={handleNavigate}>Superb Movies and Shows App</div>
 
         <div>
           This website is Developed and Maintained by Shubham Singh <br />

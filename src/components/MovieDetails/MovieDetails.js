@@ -29,7 +29,7 @@ const MovieDetails = () => {
     <>
       <div className="movie-section">
         {Object.keys(completeMovieShowDetails).length === 0 ? (
-          <div>Please wait ...</div>
+          <div>No Data Found</div>
         ) : (
           <>
             <div className="section-left">

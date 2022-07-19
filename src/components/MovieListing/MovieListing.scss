@@ -1,9 +1,5 @@
 @import "../../common/colors.scss";
 
-.movie-wrapper {
-  // height: 100vh;
-}
-
 .movie-list,
 .show-list {
   margin: 20px 0;
@@ -14,11 +10,12 @@
   }
 }
 
-.movie-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-gap: 15px;
-}
+// When we dont want to use carousel than uncomment this code
+// .movie-container {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+//   grid-gap: 15px;
+// }
 
 .movies-error h3 {
   color: $font-primary;

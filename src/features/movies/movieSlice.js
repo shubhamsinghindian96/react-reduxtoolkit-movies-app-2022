@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import movieApi from "../../common/apis/movieApi";
-import { apiKey } from "../../common/apis/movieApiKey";
+// import { apiKey } from "../../utils/apis/movieApiKey";
+import { axiosInstance } from "../../services/axiosInstance";
+
+// console.log("process.env", process.env.REACT_APP_MOVIE_API_KEY);
+
 // -------------------------------------------------------------------------------------------
 
 // This method is used to fetch movies from the imdb database asynchronously.
@@ -10,11 +13,14 @@ export const fetchAsyncMovies = createAsyncThunk(
   async (searchedvalue) => {
     // const movieText = "Harry"; //movieText is used to search a particular movie.
     try {
-      const response = await movieApi.get(
-        `?apiKey=${apiKey}&s=${searchedvalue}&type=movie`
+      const response = await axiosInstance.get(
+        `?apiKey=${process.env.REACT_APP_MOVIE_API_KEY}&s=${searchedvalue}&type=movie`
       );
-      console.log("Movies List Response:: ", response);
-      return response.data;
+      if (response.status === 200 && response.data.Response === "True") {
+        return response.data;
+      } else {
+        return {};
+      }
     } catch (error) {
       console.log("Getting error while fetching movies list: ", error?.message);
     }
@@ -28,11 +34,14 @@ export const fetchAsyncShows = createAsyncThunk(
   async (searchedvalue) => {
     // const seriesText = "Friends"; //seriesText is used to search a particular shows series.
     try {
-      const response = await movieApi.get(
-        `?apiKey=${apiKey}&s=${searchedvalue}&type=series`
+      const response = await axiosInstance.get(
+        `?apiKey=${process.env.REACT_APP_MOVIE_API_KEY}&s=${searchedvalue}&type=series`
       );
-      console.log("Shows List Response:: ", response);
-      return response.data;
+      if (response.status === 200 && response.data.Response === "True") {
+        return response.data;
+      } else {
+        return {};
+      }
     } catch (error) {
       console.log("Getting error while fetching shows list: ", error?.message);
     }
@@ -45,11 +54,14 @@ export const fetchAsyncMovieOrShowDetails = createAsyncThunk(
   "movies/fetchAsyncMovieOrShowDetails",
   async (id) => {
     try {
-      const response = await movieApi.get(
-        `?apiKey=${apiKey}&i=${id}&Plot=full`
+      const response = await axiosInstance.get(
+        `?apiKey=${process.env.REACT_APP_MOVIE_API_KEY}&i=${id}&Plot=full`
       );
-      console.log("Movie/Show details Response:: ", response);
-      return response.data;
+      if (response.status === 200 && response.data.Response === "True") {
+        return response.data;
+      } else {
+        return {};
+      }
     } catch (error) {
       console.log(
         "Getting error while fetching particular movie/show details: ",
@@ -90,39 +102,39 @@ const movieSlice = createSlice({
   extraReducers: {
     //For Movies
     [fetchAsyncMovies.pending]: () => {
-      console.log("Movies fetching is Pending");
+      // console.log("Movies fetching is Pending");
     },
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-      console.log("Movies Fetched Successfully");
+      // console.log("Movies Fetched Successfully");
       return { ...state, moviesData: payload };
     },
     [fetchAsyncMovies.rejected]: () => {
-      console.log("Movies fetching is Rejected");
+      // console.log("Movies fetching is Rejected");
     },
 
     //For Shows
     [fetchAsyncShows.pending]: () => {
-      console.log("Shows fetching is Pending");
+      // console.log("Shows fetching is Pending");
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
-      console.log("Shows Fetched Successfully");
+      // console.log("Shows Fetched Successfully");
       return { ...state, showsData: payload };
     },
     [fetchAsyncShows.rejected]: () => {
-      console.log("Shows fetching is Rejected");
+      // console.log("Shows fetching is Rejected");
     },
 
     // For Movie/Show Details Page
     //For Shows
     [fetchAsyncMovieOrShowDetails.pending]: () => {
-      console.log("Movie/Show details fetching is Pending");
+      // console.log("Movie/Show details fetching is Pending");
     },
     [fetchAsyncMovieOrShowDetails.fulfilled]: (state, { payload }) => {
-      console.log("Movie/Show details fetched Successfully");
+      // console.log("Movie/Show details fetched Successfully");
       return { ...state, particularMovieOrShowData: payload };
     },
     [fetchAsyncMovieOrShowDetails.rejected]: () => {
-      console.log("Movie/Show details fetching is Rejected");
+      // console.log("Movie/Show details fetching is Rejected");
     },
   },
 });

@@ -6,11 +6,12 @@ import {
 import "./MovieListing.scss";
 import { useSelector } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
-// import { settings } from "../../common/carouselSettings";
+import { settings } from "../../common/carouselSettings";
 
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick-theme.css";
-// import "slick-carousel/slick/slick.css";
+// React Slick
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 // =========================================================================
 
 const MovieListing = () => {
@@ -20,55 +21,40 @@ const MovieListing = () => {
   // Fetching Shows List from the redux-store.
   const shows = useSelector(fetchAllShows);
 
-  let renderMovies,
-    renderShows = null;
-
-  renderMovies =
-    movies?.Response === "True" ? (
-      <>
-        {movies?.Search?.length > 0 &&
-          movies?.Search.map((movie, index) => {
-            return <MovieCard key={index} data={movie} />;
-          })}
-      </>
-    ) : (
-      <>
-        <div className="movies-error">
-          <h3>{movies?.Error}</h3>
-        </div>
-      </>
-    );
-
-  renderShows =
-    shows?.Response === "True" ? (
-      <>
-        {shows?.Search?.length > 0 &&
-          shows?.Search.map((show, index) => {
-            return <MovieCard key={index} data={show} />;
-          })}
-      </>
-    ) : (
-      <>
-        <div className="movies-error">
-          <h3>{shows?.Error}</h3>
-        </div>
-      </>
-    );
   return (
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>Movies</h2>
         <div className="movie-container">
-          {renderMovies}
-          {/* <Slider {...settings}>{renderMovies}</Slider> */}
+          {movies?.Search?.length > 0 ? (
+            <Slider {...settings}>
+              {movies?.Search.map((movie, index) => {
+                return <MovieCard key={index} data={movie} />;
+              })}
+            </Slider>
+          ) : (
+            <div className="movies-error">
+              <h3>No Data Found</h3>
+            </div>
+          )}
         </div>
       </div>
 
       <div className="show-list">
         <h2>Shows</h2>
         <div className="movie-container">
-          {renderShows}
-          {/* <Slider {...settings}>{renderShows}</Slider> */}
+          {shows?.Search?.length > 0 ? (
+            <Slider {...settings}>
+              {shows?.Search?.length > 0 &&
+                shows?.Search.map((show, index) => {
+                  return <MovieCard key={index} data={show} />;
+                })}
+            </Slider>
+          ) : (
+            <div className="movies-error">
+              <h3>No Data Found</h3>
+            </div>
+          )}
         </div>
       </div>
     </div>
