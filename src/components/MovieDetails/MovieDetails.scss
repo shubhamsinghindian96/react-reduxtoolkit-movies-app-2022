@@ -61,17 +61,38 @@
   margin-left: 30px;
 }
 
+.mobileView {
+  display: none;
+}
+.desktopView {
+  display: block;
+}
+
 @media (max-width: 767px) {
+  .mobileView {
+    display: block;
+  }
+  .desktopView {
+    display: none;
+  }
   .movie-section {
     flex-direction: column-reverse;
+    padding: 0;
+  }
+  .section-left {
+    padding-bottom: 40px;
   }
   .section-right {
     margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   .movie-title {
     font-size: 35px;
+    padding: 20px 0;
+    text-align: center;
   }
   .movie-rating {
     flex-wrap: wrap;

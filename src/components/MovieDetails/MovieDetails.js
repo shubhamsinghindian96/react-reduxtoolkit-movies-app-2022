@@ -40,7 +40,7 @@ const MovieDetails = () => {
           ) : (
             <>
               <div className="section-left">
-                <div className="movie-title">
+                <div className="movie-title desktopView">
                   {completeMovieShowDetails?.data?.Title}
                 </div>
                 <div className="movie-rating">
@@ -87,7 +87,11 @@ const MovieDetails = () => {
                   </div>
                 </div>
               </div>
+
               <div className="section-right">
+                <div className="movie-title mobileView">
+                  {completeMovieShowDetails?.data?.Title}
+                </div>
                 <img
                   src={completeMovieShowDetails?.data?.Poster}
                   alt={completeMovieShowDetails?.data?.Title}

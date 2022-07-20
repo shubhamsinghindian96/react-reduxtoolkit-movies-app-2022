@@ -11,13 +11,20 @@ const Footer = () => {
 
   // This method is used to redirect on Home Page
   const handleNavigate = () => {
-    dispatch(storeSearchedValue());
+    dispatch(
+      storeSearchedValue({
+        type: "both",
+        value: "",
+      })
+    );
     navigate("/");
   };
   return (
     <>
       <div className="footer">
-        <div onClick={handleNavigate}>Superb Movies and Shows App</div>
+        <div onClick={handleNavigate}>
+          <b>Superb Movies and Shows App</b>
+        </div>
 
         <div>
           This website is Developed and Maintained by Shubham Singh <br />

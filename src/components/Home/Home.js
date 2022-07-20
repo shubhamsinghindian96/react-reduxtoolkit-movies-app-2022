@@ -19,17 +19,40 @@ const Home = () => {
 
   const searchedValue = useSelector(fetchSearchedValue); // Fetching searched value from redux store
 
+  console.log("searchedValue", searchedValue);
+
   const [movieText, setMovieText] = useState("");
   const [showText, setShowText] = useState("");
 
   // Initial Movie and Show Values
   useEffect(() => {
-    setMovieText(
-      searchedValue?.toString()?.length > 0 ? searchedValue : "Harry"
-    );
-    setShowText(
-      searchedValue?.toString()?.length > 0 ? searchedValue : "Friends"
-    );
+    if (searchedValue?.type === "both") {
+      setMovieText(
+        searchedValue?.value?.toString()?.length > 0
+          ? searchedValue?.value
+          : "Harry"
+      );
+      setShowText(
+        searchedValue?.value?.toString()?.length > 0
+          ? searchedValue?.value
+          : "Bean"
+      );
+    } else if (searchedValue?.type === "movies") {
+      setMovieText(
+        searchedValue?.value?.toString()?.length > 0
+          ? searchedValue?.value
+          : "Harry"
+      );
+      setShowText("Bean");
+    } else if (searchedValue?.type === "shows") {
+      setMovieText("Harry");
+      setShowText(
+        searchedValue?.value?.toString()?.length > 0
+          ? searchedValue?.value
+          : "Bean"
+      );
+    } else {
+    }
   }, [searchedValue]);
 
   // ============================================ SYNCHRONOUSLY ======================================================
@@ -61,14 +84,21 @@ const Home = () => {
   // ============================================ ASYNCHRONOUSLY ===================================================
   // Fetching Movies List
   useEffect(() => {
-    // This method (fetchAsyncMovies()) is used to fetch movies list from the imdb database by asynchronously
-    // and store that movies in redux store.
-    movieText && dispatch(fetchAsyncMovies(movieText));
+    if (searchedValue?.type === "both") {
+      // This method (fetchAsyncMovies()) is used to fetch movies list from the imdb database by asynchronously
+      // and store that movies in redux store.
+      movieText && dispatch(fetchAsyncMovies(movieText));
 
-    // This method (fetchAsyncShows()) is used to fetch shows list from the imdb database by asynchronously
-    // and store that shows in redux store.
-    showText && dispatch(fetchAsyncShows(showText));
-  }, [dispatch, movieText, showText]);
+      // This method (fetchAsyncShows()) is used to fetch shows list from the imdb database by asynchronously
+      // and store that shows in redux store.
+      showText && dispatch(fetchAsyncShows(showText));
+    } else if (searchedValue?.type === "movies") {
+      movieText && dispatch(fetchAsyncMovies(movieText));
+    } else if (searchedValue?.type === "shows") {
+      showText && dispatch(fetchAsyncShows(showText));
+    } else {
+    }
+  }, [dispatch, searchedValue?.type, showText, movieText]);
 
   // ===============================================================================================================
 

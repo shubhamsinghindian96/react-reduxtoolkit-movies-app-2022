@@ -78,7 +78,10 @@ const initialState = {
   },
   showsData: { isLoading: false, data: {} },
   particularMovieOrShowData: { isLoading: false, data: {} },
-  searchedValue: "",
+  searchedValue: {
+    type: "both",
+    value: "",
+  },
 };
 
 const movieSlice = createSlice({
@@ -99,7 +102,7 @@ const movieSlice = createSlice({
 
     // Used to store seached field value in redux store
     storeSearchedValue: (state, { payload }) => {
-      state.searchedValue = payload ? payload : "";
+      state.searchedValue = payload;
     },
   },
   extraReducers: {

@@ -9,8 +9,6 @@
 
 body {
   background: $primary-color;
-  min-height: 100vh;
-  position: relative;
 }
 a {
   text-decoration: none;
@@ -18,4 +16,5 @@ a {
 }
 .container {
   margin: 0 40px;
+  min-height: 100vh;
 }

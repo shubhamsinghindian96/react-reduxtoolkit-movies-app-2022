@@ -18,26 +18,48 @@ const Header = () => {
 
   const searchedValue = useSelector(fetchSearchedValue); //Fetching Search field value from redux store.
   const [searchMovieOrShow, setSearchMovieOrShow] = useState(""); // Used to store search field value
+  const [contentType, setContentType] = useState("both");
 
   // Store searched value in local state
   useEffect(() => {
-    setSearchMovieOrShow(searchedValue ? searchedValue : "");
+    setSearchMovieOrShow(searchedValue.value ? searchedValue.value : "");
   }, [searchedValue]);
 
   // This method is used to search a particular movie or show.
   const submitHandler = (event) => {
     event.preventDefault(); //Prevent Refreshing of a page.
     if (searchMovieOrShow === "") return alert("Please Enter the value");
-    dispatch(storeSearchedValue(searchMovieOrShow)); // Sending Searched Value to redux store
-    dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
-    dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
+    dispatch(
+      storeSearchedValue({
+        type: contentType,
+        value: searchMovieOrShow,
+      })
+    ); // Sending Searched Value to redux store
+    console.log("contentType", contentType);
+    if (contentType === "both") {
+      dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
+      dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
+    } else if (contentType === "movies") {
+      dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
+    } else if (contentType === "shows") {
+      dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
+    } else {
+      dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
+      dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
+    }
+
     navigate("/"); // Redirect to Home Page
     // setSearchMovieOrShow(""); // Clear Search field value
   };
 
   // This method is used to clear search field value and redirect to home page
   const handleNavigate = () => {
-    dispatch(storeSearchedValue());
+    dispatch(
+      storeSearchedValue({
+        type: "both",
+        value: "",
+      })
+    );
     setSearchMovieOrShow("");
     navigate("/");
   };
@@ -58,8 +80,15 @@ const Header = () => {
               value={searchMovieOrShow}
               onChange={(event) => setSearchMovieOrShow(event.target.value)}
               autoComplete="off"
-              autoFocus
             />
+            <select
+              value={contentType}
+              onChange={(event) => setContentType(event.target.value)}
+            >
+              <option value="movies">Movies</option>
+              <option value="shows">Shows</option>
+              <option value="both">Both</option>
+            </select>
             <button type="submit">
               <i className="fa fa-search"></i>
             </button>

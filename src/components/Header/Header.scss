@@ -7,6 +7,10 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 .logo {
   color: $font-primary;
@@ -45,7 +49,7 @@
     height: auto !important;
     flex-wrap: wrap;
     gap: 15px;
-    padding: 10px 40px;
+    padding: 10px;
   }
   .search-bar {
     justify-content: none;
@@ -65,5 +69,10 @@
 @media (max-width: 320px) {
   input {
     font-size: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .search-bar {
+    width: 100%;
   }
 }
