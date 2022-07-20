@@ -72,9 +72,12 @@ export const fetchAsyncMovieOrShowDetails = createAsyncThunk(
 );
 
 const initialState = {
-  moviesData: {},
-  showsData: {},
-  particularMovieOrShowData: {},
+  moviesData: {
+    isLoading: false,
+    data: {},
+  },
+  showsData: { isLoading: false, data: {} },
+  particularMovieOrShowData: { isLoading: false, data: {} },
   searchedValue: "",
 };
 
@@ -101,40 +104,97 @@ const movieSlice = createSlice({
   },
   extraReducers: {
     //For Movies
-    [fetchAsyncMovies.pending]: () => {
+    [fetchAsyncMovies.pending]: (state) => {
       // console.log("Movies fetching is Pending");
+      return {
+        ...state,
+        moviesData: {
+          isLoading: true,
+        },
+      };
     },
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
       // console.log("Movies Fetched Successfully");
-      return { ...state, moviesData: payload };
+      // return { ...state, moviesData: payload };
+      return {
+        ...state,
+        moviesData: {
+          isLoading: false,
+          data: payload,
+        },
+      };
     },
-    [fetchAsyncMovies.rejected]: () => {
+    [fetchAsyncMovies.rejected]: (state) => {
       // console.log("Movies fetching is Rejected");
+      return {
+        ...state,
+        moviesData: {
+          isLoading: false,
+        },
+      };
     },
 
     //For Shows
-    [fetchAsyncShows.pending]: () => {
+    [fetchAsyncShows.pending]: (state) => {
       // console.log("Shows fetching is Pending");
+      return {
+        ...state,
+        showsData: {
+          isLoading: true,
+        },
+      };
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
       // console.log("Shows Fetched Successfully");
-      return { ...state, showsData: payload };
+      // return { ...state, showsData: payload };
+      return {
+        ...state,
+        showsData: {
+          isLoading: false,
+          data: payload,
+        },
+      };
     },
-    [fetchAsyncShows.rejected]: () => {
+    [fetchAsyncShows.rejected]: (state) => {
       // console.log("Shows fetching is Rejected");
+      return {
+        ...state,
+        showsData: {
+          isLoading: false,
+        },
+      };
     },
 
     // For Movie/Show Details Page
     //For Shows
-    [fetchAsyncMovieOrShowDetails.pending]: () => {
+    [fetchAsyncMovieOrShowDetails.pending]: (state) => {
       // console.log("Movie/Show details fetching is Pending");
+      return {
+        ...state,
+        particularMovieOrShowData: {
+          isLoading: true,
+        },
+      };
     },
     [fetchAsyncMovieOrShowDetails.fulfilled]: (state, { payload }) => {
       // console.log("Movie/Show details fetched Successfully");
-      return { ...state, particularMovieOrShowData: payload };
+      // return { ...state, particularMovieOrShowData: payload };
+      return {
+        ...state,
+        particularMovieOrShowData: {
+          isLoading: false,
+          data: payload,
+        },
+      };
     },
-    [fetchAsyncMovieOrShowDetails.rejected]: () => {
+    [fetchAsyncMovieOrShowDetails.rejected]: (state) => {
       // console.log("Movie/Show details fetching is Rejected");
+      return {
+        ...state,
+        particularMovieOrShowData: {
+          isLoading: false,
+        },
+      };
     },
   },
 });

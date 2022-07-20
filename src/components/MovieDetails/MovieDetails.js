@@ -27,66 +27,76 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div className="movie-section">
-        {Object.keys(completeMovieShowDetails).length === 0 ? (
-          <div>No Data Found</div>
-        ) : (
-          <>
-            <div className="section-left">
-              <div className="movie-title">
-                {completeMovieShowDetails?.Title}
+      {completeMovieShowDetails?.isLoading ? (
+        <div className="loading-container">
+          <p>Please wait ...</p>
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <div className="movie-section">
+          {completeMovieShowDetails?.data &&
+          Object.keys(completeMovieShowDetails?.data).length === 0 ? (
+            <div>No Data Found</div>
+          ) : (
+            <>
+              <div className="section-left">
+                <div className="movie-title">
+                  {completeMovieShowDetails?.data?.Title}
+                </div>
+                <div className="movie-rating">
+                  <span>
+                    IMDB Rating <i className="fa fa-star"></i> : &nbsp;
+                    {completeMovieShowDetails?.data?.imdbRating}
+                  </span>
+                  <span>
+                    IMDB Votes <i className="fa fa-thumbs-up"></i> : &nbsp;
+                    {completeMovieShowDetails?.data?.imdbVotes}
+                  </span>
+                  <span>
+                    Runtime <i className="fa fa-film"></i> : &nbsp;
+                    {completeMovieShowDetails?.data?.Runtime}
+                  </span>
+                  <span>
+                    Year <i className="fa fa-calendar"></i> : &nbsp;
+                    {completeMovieShowDetails?.data?.Year}
+                  </span>
+                </div>
+                <div className="movie-plot">
+                  {completeMovieShowDetails?.data?.Plot}
+                </div>
+                <div className="movie-info">
+                  <div>
+                    <span>Director: </span>
+                    <span>{completeMovieShowDetails?.data?.Director}</span>
+                  </div>
+                  <div>
+                    <span>Stars: </span>
+                    <span>{completeMovieShowDetails?.data?.Actors}</span>
+                  </div>
+                  <div>
+                    <span>Genres: </span>
+                    <span>{completeMovieShowDetails?.data?.Genre}</span>
+                  </div>
+                  <div>
+                    <span>Languages: </span>
+                    <span>{completeMovieShowDetails?.data?.Language}</span>
+                  </div>
+                  <div>
+                    <span>Awards: </span>
+                    <span>{completeMovieShowDetails?.data?.Awards}</span>
+                  </div>
+                </div>
               </div>
-              <div className="movie-rating">
-                <span>
-                  IMDB Rating <i className="fa fa-star"></i> : &nbsp;
-                  {completeMovieShowDetails?.imdbRating}
-                </span>
-                <span>
-                  IMDB Votes <i className="fa fa-thumbs-up"></i> : &nbsp;
-                  {completeMovieShowDetails?.imdbVotes}
-                </span>
-                <span>
-                  Runtime <i className="fa fa-film"></i> : &nbsp;
-                  {completeMovieShowDetails?.Runtime}
-                </span>
-                <span>
-                  Year <i className="fa fa-calendar"></i> : &nbsp;
-                  {completeMovieShowDetails?.Year}
-                </span>
+              <div className="section-right">
+                <img
+                  src={completeMovieShowDetails?.data?.Poster}
+                  alt={completeMovieShowDetails?.data?.Title}
+                />
               </div>
-              <div className="movie-plot">{completeMovieShowDetails?.Plot}</div>
-              <div className="movie-info">
-                <div>
-                  <span>Director: </span>
-                  <span>{completeMovieShowDetails?.Director}</span>
-                </div>
-                <div>
-                  <span>Stars: </span>
-                  <span>{completeMovieShowDetails?.Actors}</span>
-                </div>
-                <div>
-                  <span>Genres: </span>
-                  <span>{completeMovieShowDetails?.Genre}</span>
-                </div>
-                <div>
-                  <span>Languages: </span>
-                  <span>{completeMovieShowDetails?.Language}</span>
-                </div>
-                <div>
-                  <span>Awards: </span>
-                  <span>{completeMovieShowDetails?.Awards}</span>
-                </div>
-              </div>
-            </div>
-            <div className="section-right">
-              <img
-                src={completeMovieShowDetails?.Poster}
-                alt={completeMovieShowDetails?.Title}
-              />
-            </div>
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 };

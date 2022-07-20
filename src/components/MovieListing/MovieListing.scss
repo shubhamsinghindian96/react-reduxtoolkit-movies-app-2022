@@ -1,5 +1,5 @@
 @import "../../common/colors.scss";
-
+@import "../../common/loadingSpinner.scss";
 .movie-list,
 .show-list {
   margin: 20px 0;
@@ -18,5 +18,10 @@
 // }
 
 .movies-error h3 {
+  color: $font-primary;
+}
+
+.loading-container p {
+  text-align: center;
   color: $font-primary;
 }

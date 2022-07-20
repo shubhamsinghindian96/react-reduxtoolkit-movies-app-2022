@@ -25,37 +25,52 @@ const MovieListing = () => {
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>Movies</h2>
-        <div className="movie-container">
-          {movies?.Search?.length > 0 ? (
-            <Slider {...settings}>
-              {movies?.Search.map((movie, index) => {
-                return <MovieCard key={index} data={movie} />;
-              })}
-            </Slider>
-          ) : (
-            <div className="movies-error">
-              <h3>No Data Found</h3>
-            </div>
-          )}
-        </div>
+
+        {movies?.isLoading ? (
+          <div className="loading-container">
+            <p>Please wait ...</p>
+            <div className="loader"></div>
+          </div>
+        ) : (
+          <div className="movie-container">
+            {movies?.data?.Search?.length > 0 ? (
+              <Slider {...settings}>
+                {movies?.data?.Search.map((movie, index) => {
+                  return <MovieCard key={index} data={movie} />;
+                })}
+              </Slider>
+            ) : (
+              <div className="movies-error">
+                <h3>No Data Found</h3>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="show-list">
         <h2>Shows</h2>
-        <div className="movie-container">
-          {shows?.Search?.length > 0 ? (
-            <Slider {...settings}>
-              {shows?.Search?.length > 0 &&
-                shows?.Search.map((show, index) => {
-                  return <MovieCard key={index} data={show} />;
-                })}
-            </Slider>
-          ) : (
-            <div className="movies-error">
-              <h3>No Data Found</h3>
-            </div>
-          )}
-        </div>
+        {shows?.isLoading ? (
+          <div className="loading-container">
+            <p>Please wait ...</p>
+            <div className="loader"></div>
+          </div>
+        ) : (
+          <div className="movie-container">
+            {shows?.data?.Search?.length > 0 ? (
+              <Slider {...settings}>
+                {shows?.data?.Search?.length > 0 &&
+                  shows?.data?.Search.map((show, index) => {
+                    return <MovieCard key={index} data={show} />;
+                  })}
+              </Slider>
+            ) : (
+              <div className="movies-error">
+                <h3>No Data Found</h3>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
