@@ -35,7 +35,6 @@ const Header = () => {
         value: searchMovieOrShow,
       })
     ); // Sending Searched Value to redux store
-    console.log("contentType", contentType);
     if (contentType === "both") {
       dispatch(fetchAsyncMovies(searchMovieOrShow)); // Fetching Movies from the database
       dispatch(fetchAsyncShows(searchMovieOrShow)); // Fetching Shows from the database
@@ -78,7 +77,9 @@ const Header = () => {
               id="searchMovieOrShow"
               placeholder="Search Movies or Shows"
               value={searchMovieOrShow}
-              onChange={(event) => setSearchMovieOrShow(event.target.value)}
+              onChange={(event) =>
+                setSearchMovieOrShow(event.target.value.trim())
+              }
               autoComplete="off"
             />
             <select

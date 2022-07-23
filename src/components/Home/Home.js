@@ -19,8 +19,6 @@ const Home = () => {
 
   const searchedValue = useSelector(fetchSearchedValue); // Fetching searched value from redux store
 
-  console.log("searchedValue", searchedValue);
-
   const [movieText, setMovieText] = useState("");
   const [showText, setShowText] = useState("");
 

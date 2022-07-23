@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Most Important Step to run this project.
+
+To run this project, we need .env file in root location i.e, outside src folder and in
+.env file one key is required which is omdb api key.
+Put this line - REACT_APP_MOVIE_API_KEY = "omdb_api_key"
+in .env file and replace omdb_api_key with your actual key.
+
 ## Available Scripts
 
 In the project directory, you can run:

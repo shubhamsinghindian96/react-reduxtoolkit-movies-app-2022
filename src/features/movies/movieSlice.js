@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { apiKey } from "../../utils/apis/movieApiKey";
 import { axiosInstance } from "../../services/axiosInstance";
 
-// console.log("process.env", process.env.REACT_APP_MOVIE_API_KEY);
-
 // -------------------------------------------------------------------------------------------
 
 // This method is used to fetch movies from the imdb database asynchronously.
@@ -108,7 +106,6 @@ const movieSlice = createSlice({
   extraReducers: {
     //For Movies
     [fetchAsyncMovies.pending]: (state) => {
-      // console.log("Movies fetching is Pending");
       return {
         ...state,
         moviesData: {
@@ -117,7 +114,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-      // console.log("Movies Fetched Successfully");
       // return { ...state, moviesData: payload };
       return {
         ...state,
@@ -128,7 +124,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncMovies.rejected]: (state) => {
-      // console.log("Movies fetching is Rejected");
       return {
         ...state,
         moviesData: {
@@ -139,7 +134,6 @@ const movieSlice = createSlice({
 
     //For Shows
     [fetchAsyncShows.pending]: (state) => {
-      // console.log("Shows fetching is Pending");
       return {
         ...state,
         showsData: {
@@ -148,7 +142,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
-      // console.log("Shows Fetched Successfully");
       // return { ...state, showsData: payload };
       return {
         ...state,
@@ -159,7 +152,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncShows.rejected]: (state) => {
-      // console.log("Shows fetching is Rejected");
       return {
         ...state,
         showsData: {
@@ -171,7 +163,6 @@ const movieSlice = createSlice({
     // For Movie/Show Details Page
     //For Shows
     [fetchAsyncMovieOrShowDetails.pending]: (state) => {
-      // console.log("Movie/Show details fetching is Pending");
       return {
         ...state,
         particularMovieOrShowData: {
@@ -180,7 +171,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncMovieOrShowDetails.fulfilled]: (state, { payload }) => {
-      // console.log("Movie/Show details fetched Successfully");
       // return { ...state, particularMovieOrShowData: payload };
       return {
         ...state,
@@ -191,7 +181,6 @@ const movieSlice = createSlice({
       };
     },
     [fetchAsyncMovieOrShowDetails.rejected]: (state) => {
-      // console.log("Movie/Show details fetching is Rejected");
       return {
         ...state,
         particularMovieOrShowData: {
